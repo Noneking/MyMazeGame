@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:background="@drawable/maze5_portrait">
+
+    <Button
+        android:id="@+id/buttonNewGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_newGame"
+        android:layout_above="@+id/buttonExit"
+        android:background="@null"
+        android:textSize="50dp"
+        android:padding="50dp"
+        android:shadowColor="#ffffff"
+        android:shadowRadius="2"/>
+
+    <Button
+        android:id="@+id/buttonExit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_exit"
+        android:background="@null"
+        android:textSize="50dp"
+        android:padding="50dp"
+        android:shadowColor="#ffffff"
+        android:shadowRadius="2"/>
+
+</LinearLayout>
