@@ -38,21 +38,30 @@ public class GameView extends View implements View.OnTouchListener {
 
         this.context= (Activity) context;
         this.maze = maze;
+
+        //Limites del laberinto
         mazeFinishX = maze.getFinalX();
         mazeFinishY = maze.getFinalY();
+
+        //Tamaño del laberinto
         mazeSizeX = maze.getMazeWidth();
         mazeSizeY = maze.getMazeHeight();
+
+        //Delimitaciones del laberinto
         line = new Paint();
         line.setColor(getResources().getColor(R.color.game_line));
+
+        //La pelota que deberemos mover
         ball = new Paint();
         ball.setColor(getResources().getColor(R.color.game_ball));
+
+        //Fondo
         background = new Paint();
         background.setColor(getResources().getColor(R.color.game_background));
-//        setFocusable(true);
-//        this.setFocusableInTouchMode(true);
+
         this.setOnTouchListener(this);
 
-        Player.play(3, context);
+        Player.play(3, context);//Reproduzco el audio
     }
 
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -67,6 +76,7 @@ public class GameView extends View implements View.OnTouchListener {
         super.onSizeChanged(w, h, oldw, oldh);
     }
 
+    //Dibuja el laberinto y sus componentes
     protected void onDraw(Canvas canvas) {
         //fill in the background
         canvas.drawRect(0, 0, width, height, background);
@@ -109,6 +119,7 @@ public class GameView extends View implements View.OnTouchListener {
                 ball);
     }
 
+    //Detecta donde en que área de la pantalla pulsamos para realizar la acción correspondiente
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if(event.getAction()==MotionEvent.ACTION_DOWN){
@@ -140,15 +151,18 @@ public class GameView extends View implements View.OnTouchListener {
                 Log.i("MOVEMENT","RIGHT");
             }
 
+            //Si la bola se puede mover la dibuja en la nueva posición
             if(moved) {
                 //the ball was moved so we'll redraw the view
                 invalidate();
+                //Si la bola se coloca en la casilla de salida
                 if(maze.isGameComplete()) {
                     Player.play(4, context);
                     Intent intent=new Intent(getContext(), ListLevelsActivity.class);
                     getContext().startActivity(intent);
                 }
             }else{
+                //Reproduce un golpe aleatorio cuando la bola se choca con una pared
                 MediaPlayer player;
                 switch((int) (Math.random()*9+1)){
                     case 1:
@@ -193,6 +207,7 @@ public class GameView extends View implements View.OnTouchListener {
         return true;
     }
 
+    //Calcula el tamaño de la pantalla
     public void CalculaTamañoPantalla(){
         if(Build.VERSION.SDK_INT > 13) {
             Display display = this.getDisplay();

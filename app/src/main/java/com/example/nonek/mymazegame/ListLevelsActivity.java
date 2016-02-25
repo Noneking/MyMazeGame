@@ -1,6 +1,7 @@
 package com.example.nonek.mymazegame;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,12 +24,7 @@ public class ListLevelsActivity extends AppCompatActivity implements MediaPlayer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_levels);
         getSupportActionBar().hide();
-
-//        player=new MediaPlayer().create(this, R.raw.maze2);
-//        player.start();
-
-//        player.setOnPreparedListener(this);
-//        player.setOnCompletionListener(this);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Player.play(2, this);
 

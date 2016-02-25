@@ -7,6 +7,7 @@ import android.util.Log;
  */
 public class MazeMaker {
 
+    //Devuelve un objeto de tipo Maze donde contiene todos los datos del laberinto (localización de los muros, posición de inicio y de fin)
     public static Maze getMaze(int mazeNum){
         Maze maze=null;
         switch(mazeNum){

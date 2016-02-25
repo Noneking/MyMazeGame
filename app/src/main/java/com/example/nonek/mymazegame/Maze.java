@@ -13,9 +13,9 @@ public class Maze implements Serializable {
 
     private boolean[][] verticalLines;
     private boolean[][] horizontalLines;
-    private int sizeX, sizeY;         //stores the width and height of the maze
-    private int currentX, currentY;   //stores the current location of the ball
-    private int finalX, finalY;       //stores the finishing of the maze
+    private int sizeX, sizeY;         //guarda el ancho y algo del laberinto
+    private int currentX, currentY;   //guarda la posición actual de la bola
+    private int finalX, finalY;       //guarda la casilla de salida del laberinto
     private boolean gameComplete;
 
     public int getMazeWidth() {
@@ -24,6 +24,8 @@ public class Maze implements Serializable {
     public int getMazeHeight() {
         return sizeY;
     }
+
+    //Devuelve true o false según si la bola se puede mover o no hacia la posición que se le pasa consultando los arrays que contienen las localizaciones de los muros
     public boolean canMove(int direction) {
         boolean moved = false;
         if(direction == UP) {

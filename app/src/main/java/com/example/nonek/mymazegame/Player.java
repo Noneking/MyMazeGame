@@ -11,6 +11,7 @@ public class Player {
 
     public static MediaPlayer player;
 
+    //Reproduce el audio que se le indica
     public synchronized static void play(int num,Context context){
 
         try {
