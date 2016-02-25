@@ -20,5 +20,7 @@ public class StartGame extends Activity {
         GameView gameView=new GameView(this, maze);
 
         setContentView(gameView);
+
+        Player.play(3, this);
     }
 }

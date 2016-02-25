@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.v4.view.MotionEventCompat;
 import android.util.Log;
@@ -35,6 +36,7 @@ public class GameView extends View implements View.OnTouchListener {
     public GameView(Context context, Maze maze){
         super(context);
 
+        this.context= (Activity) context;
         this.maze = maze;
         mazeFinishX = maze.getFinalX();
         mazeFinishY = maze.getFinalY();
@@ -49,6 +51,8 @@ public class GameView extends View implements View.OnTouchListener {
 //        setFocusable(true);
 //        this.setFocusableInTouchMode(true);
         this.setOnTouchListener(this);
+
+        Player.play(3, context);
     }
 
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -140,8 +144,49 @@ public class GameView extends View implements View.OnTouchListener {
                 //the ball was moved so we'll redraw the view
                 invalidate();
                 if(maze.isGameComplete()) {
+                    Player.play(4, context);
                     Intent intent=new Intent(getContext(), ListLevelsActivity.class);
                     getContext().startActivity(intent);
+                }
+            }else{
+                MediaPlayer player;
+                switch((int) (Math.random()*9+1)){
+                    case 1:
+                        player=MediaPlayer.create(context, R.raw.punch1);
+                        player.start();
+                        break;
+                    case 2:
+                        player=MediaPlayer.create(context, R.raw.punch2);
+                        player.start();
+                        break;
+                    case 3:
+                        player=MediaPlayer.create(context, R.raw.punch3);
+                        player.start();
+                        break;
+                    case 4:
+                        player=MediaPlayer.create(context, R.raw.punch4);
+                        player.start();
+                        break;
+                    case 5:
+                        player=MediaPlayer.create(context, R.raw.punch5);
+                        player.start();
+                        break;
+                    case 6:
+                        player=MediaPlayer.create(context, R.raw.punch6);
+                        player.start();
+                        break;
+                    case 7:
+                        player=MediaPlayer.create(context, R.raw.punch7);
+                        player.start();
+                        break;
+                    case 8:
+                        player=MediaPlayer.create(context, R.raw.punch8);
+                        player.start();
+                        break;
+                    case 9:
+                        player=MediaPlayer.create(context, R.raw.punch9);
+                        player.start();
+                        break;
                 }
             }
         }

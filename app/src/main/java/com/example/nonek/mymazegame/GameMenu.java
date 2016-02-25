@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-public class GameMenu extends AppCompatActivity implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, View.OnClickListener {
+public class GameMenu extends AppCompatActivity implements View.OnClickListener {
 
     Intent intent;
 
@@ -44,11 +44,13 @@ public class GameMenu extends AppCompatActivity implements MediaPlayer.OnPrepare
         newGame.setTypeface(typeface);
         exit.setTypeface(typeface);
 
-        player=new MediaPlayer().create(this, R.raw.intro);
-        player.start();
+//        player=new MediaPlayer().create(this, R.raw.intro);
+//        player.start();
 
-        player.setOnPreparedListener(this);
-        player.setOnCompletionListener(this);
+        Player.play(1, this);
+
+//        player.setOnPreparedListener(this);
+//        player.setOnCompletionListener(this);
 
 //        musicSrv.playSong(1);
 
@@ -86,9 +88,11 @@ public class GameMenu extends AppCompatActivity implements MediaPlayer.OnPrepare
         switch(v.getId()){
             case R.id.buttonNewGame:
                 intent=new Intent(getApplicationContext(), ListLevelsActivity.class);
-                if(player!=null) {
-                    player.stop();
-                    player.release();
+                try {
+//                    player.reset();
+//                    player=null;
+                } catch(Exception ex){
+
                 }
                 startActivity(intent);
                 break;
@@ -96,15 +100,5 @@ public class GameMenu extends AppCompatActivity implements MediaPlayer.OnPrepare
                 this.finish();
                 break;
         }
-    }
-
-    @Override
-    public void onPrepared(MediaPlayer mp) {
-
-    }
-
-    @Override
-    public void onCompletion(MediaPlayer mp) {
-        player.start();
     }
 }

@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+import java.io.IOException;
+
 public class ListLevelsActivity extends AppCompatActivity implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, Button.OnClickListener {
 
     MediaPlayer player;
@@ -22,11 +24,13 @@ public class ListLevelsActivity extends AppCompatActivity implements MediaPlayer
         setContentView(R.layout.activity_list_levels);
         getSupportActionBar().hide();
 
-        player=new MediaPlayer().create(this, R.raw.maze2);
-        player.start();
+//        player=new MediaPlayer().create(this, R.raw.maze2);
+//        player.start();
 
-        player.setOnPreparedListener(this);
-        player.setOnCompletionListener(this);
+//        player.setOnPreparedListener(this);
+//        player.setOnCompletionListener(this);
+
+        Player.play(2, this);
 
         window=this.getWindow();
         window.setStatusBarColor(this.getResources().getColor(R.color.game_background));
@@ -44,18 +48,26 @@ public class ListLevelsActivity extends AppCompatActivity implements MediaPlayer
     @Override
     public void onClick(View v) {
         Intent intent;
+        Maze maze;
+
         switch(v.getId()){
             case R.id.button_level01:
                 intent=new Intent(getApplicationContext(), StartGame.class);
-                Maze maze=MazeMaker.getMaze(1);
+                maze=MazeMaker.getMaze(1);
                 intent.putExtra("MAZE", maze);
                 startActivity(intent);
                 break;
             case R.id.button_level02:
-
+                intent=new Intent(getApplicationContext(), StartGame.class);
+                maze=MazeMaker.getMaze(2);
+                intent.putExtra("MAZE", maze);
+                startActivity(intent);
                 break;
             case R.id.button_level03:
-
+                intent=new Intent(getApplicationContext(), StartGame.class);
+                maze=MazeMaker.getMaze(3);
+                intent.putExtra("MAZE", maze);
+                startActivity(intent);
                 break;
         }
     }
